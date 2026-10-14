@@ -1,0 +1,7 @@
+node_modules/
+.research/
+.artifacts/
+*.log
+.env
+project.private.config.json
+

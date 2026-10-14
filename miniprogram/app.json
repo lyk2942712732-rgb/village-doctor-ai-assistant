@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/record/index",
+    "pages/residents/index",
+    "pages/priority/index",
+    "pages/outreach/index",
+    "pages/stats/index",
+    "pages/clinic/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "村医 · 病历助手",
+    "navigationBarBackgroundColor": "#F7F6F3",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F7F6F3",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "工作台"
+      },
+      {
+        "pagePath": "pages/residents/index",
+        "text": "居民档案"
+      },
+      {
+        "pagePath": "pages/priority/index",
+        "text": "重点筛选"
+      },
+      {
+        "pagePath": "pages/stats/index",
+        "text": "服务统计"
+      }
+    ]
+  },
+  "permission": {
+    "scope.record": {
+      "desc": "经居民同意后录制医患沟通，转写为待审核病历"
+    }
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

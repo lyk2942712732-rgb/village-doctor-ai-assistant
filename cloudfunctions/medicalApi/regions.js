@@ -1,0 +1,6 @@
+const fs=require('fs');const path=require('path');const zlib=require('zlib');
+const index=require('./region-data/index.json');const cache=new Map();const keys=['province','city','county','township','village'];
+function province(code){if(!/^\d{2}$/.test(code)||!index.some(p=>p.code===code))throw new Error('省份选择无效');if(!cache.has(code)){if(cache.size>=2)cache.delete(cache.keys().next().value);cache.set(code,JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(__dirname,'region-data',code+'.json.gz')))));}return cache.get(code);}
+function options(parent=''){if(!parent)return index.map(({code,name})=>({code,name}));if(!/^\d{2}(?:\d{2}|\d{4}|\d{7})?$/.test(parent))throw new Error('地区编码无效');let node=province(parent.slice(0,2));for(const len of [4,6,9]){if(parent.length<len)break;node=(node.children||[]).find(n=>n.code===parent.slice(0,len));if(!node)throw new Error('地区不在已选上级范围内');}return (node.children||[]).map(({code,name})=>({code,name}));}
+function validate(codes){if(!Array.isArray(codes)||codes.length!==5)throw new Error('请选择完整的省、市、区县、乡镇和村/社区');const result={regionCodes:codes.slice()};let parent='';codes.forEach((code,i)=>{const item=options(parent).find(o=>o.code===code);if(!item)throw new Error('地区选择已失效，请重新选择'+keys[i]);result[keys[i]]=item.name;parent=code;});return result;}
+module.exports={options,validate,version:'2023-06-30'};

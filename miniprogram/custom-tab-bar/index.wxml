@@ -1,0 +1,1 @@
+<view class="tabbar"><view wx:for="{{tabs}}" wx:key="path" class="tab {{selected === index ? 'active' : ''}}" bindtap="switchTab" data-path="{{item.path}}" hover-class="tab-pressed"><image class="tab-icon" src="/images/notion/{{item.icon}}.png"/><text>{{item.text}}</text></view></view>

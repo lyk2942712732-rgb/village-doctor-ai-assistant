@@ -1,0 +1,1 @@
+{"desc":"医疗档案不参与搜索索引","rules":[{"action":"disallow","page":"*"}]}
